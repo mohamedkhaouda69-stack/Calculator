@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="calculator.css">
+    <script>
+        let firstNumber = ""
+        let operator = ""
+        let secondNumber = ""
+        function runCalcul() {
+
+            secondNumber =
+                document.getElementById("resultat").value;
+
+            let result;
+
+            if (operator === "+") {
+                result =
+                    Number(firstNumber) +
+                    Number(secondNumber);
+            }
+
+            else if (operator === "-") {
+                result =
+                    Number(firstNumber) -
+                    Number(secondNumber);
+            }
+
+            else if (operator === "*") {
+                result =
+                    Number(firstNumber) *
+                    Number(secondNumber);
+            }
+
+            else if (operator === "/") {
+
+                if (secondNumber == 0) {
+                    alert("division par zero");
+                    return;
+                }
+
+                result = Number(firstNumber) / Number(secondNumber);
+            }
+            else if(operator === "%") {
+                result = firstNumber % secondNumber
+            }
+
+            document.getElementById("resultat").value =
+                Number(result);
+
+            firstNumber = result;
+        }
+        function Clear() {
+            document.getElementById("resultat").value = "";
+            firstNumber = ""
+            operator = ""
+            secondNumber = ""
+        }
+
+        function appendNumber(number) {
+            document.getElementById("resultat").value += number
+        }
+        function setOperator(op) {
+            firstNumber = document.getElementById("resultat").value
+            operator = op
+            document.getElementById("resultat").value = ""
+        }
+        function deleter() {
+            let screen =
+                document.getElementById("resultat");
+
+            screen.value =
+                screen.value.slice(0, -1);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="calcul_border">
+        <div class="affichage">
+            <input type="text" name="resultat" id="resultat" readonly>
+        </div>
+        <div class="align">
+            <div class="number_layout">
+                <button class="operator" onclick="setOperator('*')">*</button>
+                <button class="operator" onclick="setOperator('+')">+</button>
+                <button class="operator" onclick="setOperator('/')">/</button>
+                <button class="operator" onclick="setOperator('-')">-</button>
+            </div>
+            <div class="number_layout">
+                <button onclick="appendNumber('7')">7</button>
+                <button onclick="appendNumber('8')">8</button>
+                <button onclick="appendNumber('9')">9</button>
+                <button onclick="Clear()">C</button>
+            </div>
+            <div class="number_layout">
+                <button onclick="appendNumber('4')">4</button>
+                <button onclick="appendNumber('5')">5</button>
+                <button onclick="appendNumber('6')">6</button>
+                <button onclick="appendNumber('%')">%</button>
+            </div>
+            <div class="number_layout">
+                <button onclick="appendNumber('1')">1</button>
+                <button onclick="appendNumber('2')">2</button>
+                <button onclick="appendNumber('3')">3</button>
+                <button onclick="deleter()">x</button>
+            </div>
+            <div class="number_layout">
+                <button onclick="appendNumber('.')">.</button>
+                <button onclick="appendNumber('0')">0</button>
+                <button onclick="appendNumber('00')">00</button>
+                <button class="equal" onclick="runCalcul()">=</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
